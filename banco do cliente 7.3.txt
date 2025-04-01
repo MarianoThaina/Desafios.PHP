@@ -1,0 +1,38 @@
+<?php
+
+
+function exibirConta($conta) {
+    echo "\nInformações da Conta:\n";
+    echo "Número da Conta: " . $conta[0] . "\n";
+    echo "CPF do Proprietário: " . $conta[1] . "\n";
+    echo "Saldo: R$" . number_format($conta[2], 2, ',', '.') . "\n";
+    echo str_repeat("-", 30) . "\n";
+}
+
+
+$bancoDeDados = [
+    [58796, "897.456.789-00", 10870.50],
+    [25484, "987.654.321-00", 25020.75],
+    [65975, "875.574.896-44", 52780.00],
+    [65897, "985.578.365-87", 127830.10]
+];
+
+
+echo "Digite o número da conta que deseja consultar: ";
+$numeroConta = trim(fgets(STDIN));
+
+
+$encontrada = false;
+foreach ($bancoDeDados as $conta) {
+    if ($conta[0] == $numeroConta) {
+        exibirConta($conta);
+        $encontrada = true;
+        break;
+    }
+}
+
+
+if (!$encontrada) {
+    echo "Conta não encontrada.\n";
+}
+?>
